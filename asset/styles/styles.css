@@ -1,0 +1,23 @@
+.hero {
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.3)
+    ),
+    url('../images/hero-event.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+
+.festival-text {
+  background: url('../images/hero-event.jpg') center/cover no-repeat;
+  -webkit-background-clip: text;   
+  background-clip: text;          
+  color: transparent;          
+}

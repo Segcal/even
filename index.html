@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventHub - Community Event Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./asset/styles/styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#1E40AF',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 font-sans">
+    <!-- Header  -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-accent">EventHub</h1>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-primary">About</a>
+                    <a href="#schedule" class="text-gray-600 hover:text-primary">Schedule</a>
+                    <a href="#contact" class="text-gray-600 hover:text-primary">Contact</a>
+                    <button onclick="showLoginModal()"
+                        class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary">Login</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section  -->
+    <section class="hero py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="festival-text text-4xl md:text-6xl font-bold mb-6">
+                Ilorin Youth Mega Festival 2025
+            </h2>
+
+            <p class="text-xl md:text-2xl mb-8 opacity-90">Join us for an amazing celebration of arts, culture, and
+                community</p>
+            <div class="space-y-4 md:space-y-0 md:space-x-4 md:flex md:justify-center">
+                <button onclick="showRoleSelection()"
+                    class="bg-accent text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-yellow-600 block w-full md:w-auto">Register
+                    Now</button>
+                <button onclick="showLoginModal()"
+                    class="bg-white text-primary px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 block w-full md:w-auto">Already
+                    Registered? Login</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details  -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">Event Details</h3>
+                <p class="text-lg text-gray-600">Everything you need to know about our community festival</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <div class="text-primary text-4xl mb-4">📅</div>
+                    <h4 class="text-xl font-semibold mb-2">Date & Time</h4>
+                    <p class="text-gray-600">March 15-17, 2024<br>10:00 AM - 8:00 PM</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <div class="text-primary text-4xl mb-4">📍</div>
+                    <h4 class="text-xl font-semibold mb-2">Location</h4>
+                    <p class="text-gray-600">Central Park Amphitheater<br>Downtown Community Center</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <div class="text-primary text-4xl mb-4">🎭</div>
+                    <h4 class="text-xl font-semibold mb-2">Activities</h4>
+                    <p class="text-gray-600">Live Performances<br>Art Exhibitions<br>Food & Crafts</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Role Selection Modal -->
+    <div id="roleModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-md w-full p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900">Choose Your Role</h3>
+                    <button onclick="closeModal('roleModal')" class="text-gray-400 hover:text-gray-600">
+                        <span class="text-2xl">&times;</span>
+                    </button>
+                </div>
+                <div class="space-y-4">
+                    <button onclick="showVolunteerForm()"
+                        class="w-full p-4 text-left border-2 border-gray-200 rounded-lg hover:border-primary hover:bg-blue-50">
+                        <div class="flex items-center">
+                            <div class="text-2xl mr-4">🤝</div>
+                            <div>
+                                <h4 class="font-semibold text-lg">Volunteer</h4>
+                                <p class="text-gray-600">Help organize and support the event</p>
+                            </div>
+                        </div>
+                    </button>
+                    <button onclick="showPerformerForm()"
+                        class="w-full p-4 text-left border-2 border-gray-200 rounded-lg hover:border-primary hover:bg-blue-50">
+                        <div class="flex items-center">
+                            <div class="text-2xl mr-4">🎭</div>
+                            <div>
+                                <h4 class="font-semibold text-lg">Performer</h4>
+                                <p class="text-gray-600">Showcase your talent at the event</p>
+                            </div>
+                        </div>
+                    </button>
+                    <button onclick="showMemberForm()"
+                        class="w-full p-4 text-left border-2 border-gray-200 rounded-lg hover:border-primary hover:bg-blue-50">
+                        <div class="flex items-center">
+                            <div class="text-2xl mr-4">🎫</div>
+                            <div>
+                                <h4 class="font-semibold text-lg">Member/Attendee</h4>
+                                <p class="text-gray-600">Purchase tickets and attend the event</p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Volunteer Registration Modal -->
+    <div id="volunteerModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-2xl w-full p-6 max-h-screen overflow-y-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900">Volunteer Registration</h3>
+                    <button onclick="closeModal('volunteerModal')" class="text-gray-400 hover:text-gray-600">
+                        <span class="text-2xl">&times;</span>
+                    </button>
+                </div>
+                <form id="volunteerForm" class="space-y-6">
+                    <!-- Personal Information Section  -->
+                    <div class="border-b pb-6">
+                        <h4 class="text-lg font-semibold mb-4 text-primary">Personal Information</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                                <input type="text" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                                <input type="email" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                                <input type="tel" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Age</label>
+                                <input type="number" min="16"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills & Experience Section  -->
+                    <div class="border-b pb-6">
+                        <h4 class="text-lg font-semibold mb-4 text-primary">Skills & Experience</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Skills (Select all that
+                                    apply)</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2"> Event Setup
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2"> Registration Desk
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2"> Sound/Tech Support
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2"> Food Service
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2"> Crowd Management
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2"> Photography
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Previous Volunteer
+                                    Experience</label>
+                                <textarea rows="3"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
+                                    placeholder="Describe any relevant experience..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Availability Section  -->
+                    <div class="border-b pb-6">
+                        <h4 class="text-lg font-semibold mb-4 text-primary">Availability</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Available Days</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2"> March 15 (Friday)
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2"> March 16 (Saturday)
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2"> March 17 (Sunday)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Start
+                                        Time</label>
+                                    <select
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                        <option>9:00 AM</option>
+                                        <option>10:00 AM</option>
+                                        <option>11:00 AM</option>
+                                        <option>12:00 PM</option>
+                                        <option>1:00 PM</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Hours Available</label>
+                                    <select
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                        <option>2-4 hours</option>
+                                        <option>4-6 hours</option>
+                                        <option>6-8 hours</option>
+                                        <option>Full day</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Emergency Contact Section  -->
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-primary">Emergency Contact</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Contact Name *</label>
+                                <input type="text" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Contact Phone *</label>
+                                <input type="tel" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Relationship</label>
+                                <input type="text"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
+                                    placeholder="e.g., Parent, Spouse, Friend">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end space-x-4 pt-6">
+                        <button type="button" onclick="closeModal('volunteerModal')"
+                            class="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">Cancel</button>
+                        <button type="submit"
+                            class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-secondary">Register as
+                            Volunteer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Performer Registration Modal  -->
+    <div id="performerModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-2xl w-full p-6 max-h-screen overflow-y-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900">Performer Registration</h3>
+                    <button onclick="closeModal('performerModal')" class="text-gray-400 hover:text-gray-600">
+                        <span class="text-2xl">&times;</span>
+                    </button>
+                </div>
+                <form id="performerForm" class="space-y-6">
+                    <!-- Personal Information  -->
+                    <div class="border-b pb-6">
+                        <h4 class="text-lg font-semibold mb-4 text-primary">Personal Information</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                                <input type="text" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Stage Name</label>
+                                <input type="text"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                                <input type="email" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                                <input type="tel" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Details  -->
+                    <div class="border-b pb-6">
+                        <h4 class="text-lg font-semibold mb-4 text-primary">Performance Details</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Talent Type *</label>
+                                <select required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                    <option value="">Select talent type</option>
+                                    <option>Music - Solo</option>
+                                    <option>Music - Band</option>
+                                    <option>Dance</option>
+                                    <option>Comedy</option>
+                                    <option>Poetry/Spoken Word</option>
+                                    <option>Magic</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Performance Duration</label>
+                                <select
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                    <option>5-10 minutes</option>
+                                    <option>10-15 minutes</option>
+                                    <option>15-20 minutes</option>
+                                    <option>20-30 minutes</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Performance Description
+                                    *</label>
+                                <textarea required rows="4"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
+                                    placeholder="Describe your performance, style, and what makes it unique..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Equipment & Requirements  -->
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-primary">Equipment & Requirements</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Equipment Needed</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2"> Microphone
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2"> Sound System
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2"> Lighting
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" class="mr-2"> Power Outlet
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Special Requirements</label>
+                                <textarea rows="3"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
+                                    placeholder="Any special setup, space, or technical requirements..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Portfolio Links</label>
+                                <input type="url"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
+                                    placeholder="YouTube, Instagram, website, etc.">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end space-x-4 pt-6">
+                        <button type="button" onclick="closeModal('performerModal')"
+                            class="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">Cancel</button>
+                        <button type="submit"
+                            class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-secondary">Register as
+                            Performer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Member Registration Modal  -->
+    <div id="memberModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-2xl w-full p-6 max-h-screen overflow-y-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900">Member Registration</h3>
+                    <button onclick="closeModal('memberModal')" class="text-gray-400 hover:text-gray-600">
+                        <span class="text-2xl">&times;</span>
+                    </button>
+                </div>
+                <form id="memberForm" class="space-y-6">
+                    <!-- Personal Information  -->
+                    <div class="border-b pb-6">
+                        <h4 class="text-lg font-semibold mb-4 text-primary">Personal Information</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                                <input type="text" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                                <input type="email" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                                <input type="tel" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Age</label>
+                                <input type="number" min="1"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ticket Selection  -->
+                    <div class="border-b pb-6">
+                        <h4 class="text-lg font-semibold mb-4 text-primary">Ticket Selection</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Ticket Type *</label>
+                                <div class="space-y-3">
+                                    <label
+                                        class="flex items-center p-4 border-2 border-gray-200 rounded-lg hover:border-primary cursor-pointer">
+                                        <input type="radio" name="ticketType" value="regular" class="mr-3">
+                                        <div class="flex-1">
+                                            <div class="font-semibold">Regular Admission - $25</div>
+                                            <div class="text-sm text-gray-600">Access to all performances and activities
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="flex items-center p-4 border-2 border-gray-200 rounded-lg hover:border-primary cursor-pointer">
+                                        <input type="radio" name="ticketType" value="vip" class="mr-3">
+                                        <div class="flex-1">
+                                            <div class="font-semibold">VIP Pass - $50</div>
+                                            <div class="text-sm text-gray-600">Premium seating, meet & greet, exclusive
+                                                access</div>
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="flex items-center p-4 border-2 border-gray-200 rounded-lg hover:border-primary cursor-pointer">
+                                        <input type="radio" name="ticketType" value="family" class="mr-3">
+                                        <div class="flex-1">
+                                            <div class="font-semibold">Family Pack (4 tickets) - $80</div>
+                                            <div class="text-sm text-gray-600">Perfect for families, includes kids
+                                                activities</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Number of Tickets</label>
+                                <select
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5+</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Information  -->
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-primary">Payment Information</h4>
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+                            <p class="text-sm text-yellow-800">
+                                <strong>Note:</strong> This is a demo form. In a real application, you would integrate
+                                with a secure payment processor like Stripe or PayPal.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Payment Method</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="radio" name="paymentMethod" value="card" class="mr-2"> Credit/Debit
+                                        Card
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="paymentMethod" value="paypal" class="mr-2"> PayPal
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="paymentMethod" value="cash" class="mr-2"> Pay at Event
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end space-x-4 pt-6">
+                        <button type="button" onclick="closeModal('memberModal')"
+                            class="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">Cancel</button>
+                        <button type="submit"
+                            class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-secondary">Complete
+                            Registration</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal  -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-md w-full p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900">Login</h3>
+                    <button onclick="closeModal('loginModal')" class="text-gray-400 hover:text-gray-600">
+                        <span class="text-2xl">&times;</span>
+                    </button>
+                </div>
+                <form id="loginForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                        <input type="password" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Login as</label>
+                        <select
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            <option>Volunteer</option>
+                            <option>Performer</option>
+                            <option>Member</option>
+                            <option>Admin</option>
+                        </select>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-primary text-white py-2 rounded-lg hover:bg-secondary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal  -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-md w-full p-6 text-center">
+                <div class="text-green-500 text-6xl mb-4">✓</div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Registration Successful!</h3>
+                <p class="text-gray-600 mb-6">Thank you for registering. You will receive a confirmation email and SMS
+                    shortly.</p>
+                <button onclick="closeModal('successModal')"
+                    class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
